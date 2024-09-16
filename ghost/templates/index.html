@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>LEGO Part Capture and Labeling</title>
+  </head>
+  <body>
+    <h1>LEGO Part Capture and Labeling</h1>
+    <form action="/capture" method="post">
+      <label for="part_number">Part Number:</label>
+      <input
+        type="text"
+        id="part_number"
+        name="part_number"
+        required
+      /><br /><br />
+
+      <label for="color">Color:</label>
+      <select id="color" name="color" required>
+        <option value="">Select a color</option>
+        <option value="black">Black</option>
+        <option value="blue">Blue</option>
+        <option value="bright green">Bright Green</option>
+        <option value="brown">Brown</option>
+        <option value="dark brown">Dark Brown</option>
+        <option value="light gray">Light Gray</option>
+        <option value="green">Green</option>
+        <option value="tan">Tan</option>
+        <option value="white">White</option>
+        <option value="yellow">Yellow</option>
+        <option value="orange">Orange</option>
+        <option value="bright light orange">Bright Light Orange</option>
+        <option value="coral">Coral</option>
+        <option value="dark gray">Dark Gray</option>
+        <option value="dark purple">Dark Purple</option>
+        <option value="dark red">Dark Red</option>
+        <option value="dark tan">Dark Tan</option>
+        <option value="purple">Purple</option></select
+      ><br /><br />
+
+      <input type="submit" value="Capture" />
+    </form>
+  </body>
+</html>

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Capture Successful</title>
+  </head>
+  <body>
+    <h1>The photo has been saved successfully!</h1>
+    <img
+      src="{{ url_for('display_image', filename=filename) }}"
+      alt="Captured Image"
+      width="400"
+    />
+    <br /><br />
+    <a href="/">Back to Home</a>
+  </body>
+</html>
