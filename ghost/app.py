@@ -16,9 +16,9 @@ def index():
 
 @app.route('/capture', methods=['POST'])
 def capture():
-    part_number_1 = request.form['part_number1']
-    part_number_2 = request.form['part_number2']
-    part_number = f"{part_number_1} {part_number_2}"
+    element_id = request.form['element_id']
+    design_id = request.form['design_id']
+    part_number = f"{element_id}_{design_id}"
 
     color = request.form['color']
 
@@ -38,8 +38,8 @@ def capture():
 
     # Save label information to CSV file for both images
     with open('data.csv', 'a') as f:
-        f.write(f"{filename1},{part_number},{color},cam1\n")
-        f.write(f"{filename2},{part_number},{color},cam2\n")
+        f.write(f"{filename1},{element_id},{design_id},{color},cam1\n")
+        f.write(f"{filename2},{element_id},{design_id},{color},cam2\n")
 
     return render_template('success.html', filename1=filename1, filename2=filename2)
 
