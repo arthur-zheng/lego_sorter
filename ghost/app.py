@@ -3,6 +3,8 @@ import subprocess
 from datetime import datetime
 from flask import Flask, render_template, request, send_from_directory
 
+app = Flask(__name__, static_folder='static')
+
 # Set the directory to save images
 IMAGE_DIR = os.path.join(app.root_path, 'static', 'images', 'captures')
 if not os.path.exists(IMAGE_DIR):
