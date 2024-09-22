@@ -4,13 +4,31 @@
     <title>Capture Successful</title>
   </head>
   <body>
-    <h1>The photo has been saved successfully!</h1>
+    <h1>The photos have been saved successfully!</h1>
+
+    <!-- Display the first captured image -->
+    <h2>Captured Image from Camera 1</h2>
     <img
-      src="{{ url_for('display_image', filename=filename) }}"
-      alt="Captured Image"
+      src="{{ url_for('display_image', filename=filename1) }}"
+      alt="Captured Image 1"
       width="400"
     />
+    <p>Filename: {{ filename1 }}</p>
+    <!-- Display the filename of the first image -->
     <br /><br />
+
+    <!-- Display the second captured image -->
+    <h2>Captured Image from Camera 2</h2>
+    <img
+      src="{{ url_for('display_image', filename=filename2) }}"
+      alt="Captured Image 2"
+      width="400"
+    />
+    <p>Filename: {{ filename2 }}</p>
+    <!-- Display the filename of the second image -->
+    <br /><br />
+
+    <!-- Link to go back to home -->
     <a href="/">Back to Home</a>
   </body>
 </html>
