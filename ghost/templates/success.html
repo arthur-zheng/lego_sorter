@@ -2,33 +2,92 @@
 <html>
   <head>
     <title>Capture Successful</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #333;
+        margin: 0;
+        padding: 0;
+        color: white;
+      }
+
+      .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+        max-width: 1200px;
+        margin: 50px auto;
+      }
+
+      h1 {
+        text-align: center;
+        color: white;
+      }
+
+      .image-container {
+        display: flex;
+        justify-content: space-around;
+        width: 100%;
+        margin-top: 20px;
+      }
+
+      .image-wrapper {
+        text-align: center;
+      }
+
+      .image-wrapper img {
+        width: 400px;
+        height: auto;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+      }
+
+      .image-wrapper p {
+        margin-top: 10px;
+        font-size: 16px;
+        color: white;
+      }
+
+      a {
+        color: #0066cc;
+        text-decoration: none;
+        font-size: 18px;
+        margin-top: 20px;
+      }
+
+      a:hover {
+        color: #0052a3;
+      }
+    </style>
   </head>
   <body>
-    <h1>The photos have been saved successfully!</h1>
+    <div class="container">
+      <h1>The photos have been saved successfully!</h1>
 
-    <!-- Display the first captured image -->
-    <h2>Captured Image from Camera 1</h2>
-    <img
-      src="{{ url_for('display_image', filename=filename1) }}"
-      alt="Captured Image 1"
-      width="400"
-    />
-    <p>Filename: {{ filename1 }}</p>
-    <!-- Display the filename of the first image -->
-    <br /><br />
+      <!-- Display the images side by side -->
+      <div class="image-container">
+        <!-- Image 1 -->
+        <div class="image-wrapper">
+          <img
+            src="{{ url_for('display_image', filename=filename1) }}"
+            alt="Captured Image 1"
+          />
+          <p>Filename: {{ filename1 }}</p>
+        </div>
 
-    <!-- Display the second captured image -->
-    <h2>Captured Image from Camera 2</h2>
-    <img
-      src="{{ url_for('display_image', filename=filename2) }}"
-      alt="Captured Image 2"
-      width="400"
-    />
-    <p>Filename: {{ filename2 }}</p>
-    <!-- Display the filename of the second image -->
-    <br /><br />
+        <!-- Image 2 -->
+        <div class="image-wrapper">
+          <img
+            src="{{ url_for('display_image', filename=filename2) }}"
+            alt="Captured Image 2"
+          />
+          <p>Filename: {{ filename2 }}</p>
+        </div>
+      </div>
 
-    <!-- Link to go back to home -->
-    <a href="/">Back to Home</a>
+      <!-- Link to go back to home -->
+      <a href="/">Back to Home</a>
+    </div>
   </body>
 </html>

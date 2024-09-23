@@ -10,6 +10,13 @@ IMAGE_DIR = os.path.join(app.root_path, 'static', 'images', 'captures')
 if not os.path.exists(IMAGE_DIR):
     os.makedirs(IMAGE_DIR)
 
+WIDTH_OF_IMAGE = 1200
+HEIGHT_OF_IMAGE = 800
+EV_CAM_0 = 0.4
+EV_CAM_1 = 0.4
+
+CROP_IMAGE = False
+
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -22,18 +29,20 @@ def capture():
 
     color = request.form['color']
 
+    width_height_ev = f"--width {WIDTH_OF_IMAGE} --height {HEIGHT_OF_IMAGE} --ev {EV_CAM_0}" if CROP_IMAGE == True else ""
+
     # Capture image from first camera
     timestamp1 = datetime.now().strftime('%Y%m%d%H%M%S')
     filename1 = f"{part_number}_{color}_{timestamp1}_cam1.jpg"
     filepath1 = os.path.join(IMAGE_DIR, filename1)
-    command1 = f"libcamera-still -o {filepath1} --nopreview -n --camera 0"
+    command1 = f"libcamera-still -o {filepath1} {width_height_ev} --nopreview -n --camera 0"
     subprocess.run(command1, shell=True)
 
     # Capture image from second camera after a short delay for a different timestamp
     timestamp2 = datetime.now().strftime('%Y%m%d%H%M%S')
-    filename2 = f"{part_number}_{color}_{timestamp2}_cam2.jpg"
+    filename2 = f"{part_number}_{color}_{timestamp2}_cam1.jpg"
     filepath2 = os.path.join(IMAGE_DIR, filename2)
-    command2 = f"libcamera-still -o {filepath2} --nopreview -n --camera 1"
+    command2 = f"libcamera-still -o {filepath2} {width_height_ev} --nopreview -n --camera 1"
     subprocess.run(command2, shell=True)
 
     # Save label information to CSV file for both images
