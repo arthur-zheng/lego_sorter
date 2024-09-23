@@ -31,14 +31,14 @@ def capture():
     width_height_ev = f"--width {WIDTH_OF_IMAGE} --height {HEIGHT_OF_IMAGE} --ev {EV_CAM_0}" if CROP_IMAGE == True else ""
 
     # Capture image from first camera
-    timestamp1 = datetime.now().strftime('%Y%m%d%H%M%S')
+    timestamp1 = datetime.now().strftime('%Y-%m-%d-%H-%M-%S')
     filename1 = f"{part_number}_{color}_{timestamp1}_cam0.jpg"
     filepath1 = os.path.join(IMAGE_DIR, filename1)
     command1 = f"libcamera-still -o {filepath1} {width_height_ev} --nopreview -n --camera 0"
     subprocess.run(command1, shell=True)
 
     # Capture image from second camera after a short delay for a different timestamp
-    timestamp2 = datetime.now().strftime('%Y%m%d%H%M%S')
+    timestamp2 = datetime.now().strftime('%Y-%m-%d-%H-%M-%S')
     filename2 = f"{part_number}_{color}_{timestamp2}_cam1.jpg"
     filepath2 = os.path.join(IMAGE_DIR, filename2)
     command2 = f"libcamera-still -o {filepath2} {width_height_ev} --nopreview -n --camera 1"
