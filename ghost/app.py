@@ -14,7 +14,6 @@ WIDTH_OF_IMAGE = 1200
 HEIGHT_OF_IMAGE = 800
 EV_CAM_0 = 0.4
 EV_CAM_1 = 0.4
-
 CROP_IMAGE = False
 
 @app.route('/')
@@ -33,7 +32,7 @@ def capture():
 
     # Capture image from first camera
     timestamp1 = datetime.now().strftime('%Y%m%d%H%M%S')
-    filename1 = f"{part_number}_{color}_{timestamp1}_cam1.jpg"
+    filename1 = f"{part_number}_{color}_{timestamp1}_cam0.jpg"
     filepath1 = os.path.join(IMAGE_DIR, filename1)
     command1 = f"libcamera-still -o {filepath1} {width_height_ev} --nopreview -n --camera 0"
     subprocess.run(command1, shell=True)
