@@ -20,7 +20,7 @@
         margin: 50px auto;
       }
 
-      h1 {
+      h4 {
         text-align: center;
         color: white;
       }
@@ -63,7 +63,7 @@
   </head>
   <body>
     <div class="container">
-      <h1>The photos have been saved successfully!</h1>
+      <h4>The photos have been saved successfully!</h4>
 
       <!-- Display the images side by side -->
       <div class="image-container">
@@ -73,7 +73,7 @@
             src="{{ url_for('display_image', filename=filename1) }}"
             alt="Captured Image 1"
           />
-          <p>Filename: {{ filename1 }}</p>
+          <p>{{ filename1 }}</p>
         </div>
 
         <!-- Image 2 -->
@@ -82,7 +82,7 @@
             src="{{ url_for('display_image', filename=filename2) }}"
             alt="Captured Image 2"
           />
-          <p>Filename: {{ filename2 }}</p>
+          <p>{{ filename2 }}</p>
         </div>
       </div>
 
