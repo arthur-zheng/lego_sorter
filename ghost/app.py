@@ -11,10 +11,10 @@ if not os.path.exists(IMAGE_DIR):
     os.makedirs(IMAGE_DIR)
 
 WIDTH_OF_IMAGE = 1200
-HEIGHT_OF_IMAGE = 800
+HEIGHT_OF_IMAGE = 1200
 EV_CAM_0 = 0.4
 EV_CAM_1 = 0.4
-CROP_IMAGE = False
+CROP_IMAGE = True
 
 @app.route('/')
 def index():
