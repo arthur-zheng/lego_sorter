@@ -1,33 +1,49 @@
 body {
   font-family: Arial, sans-serif;
-  text-align: center;
   margin: 0;
   padding: 20px;
   font-size: 16px;
 }
 
-.input-group {
-  margin: 20px 0;
+h1 {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.container {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.input-column {
+  flex: 0 0 30%;
+  padding-right: 20px;
+}
+
+.image-column {
+  flex: 0 0 33%;
+}
+
+.input-group {
+  margin-bottom: 20px;
 }
 
 label {
-  display: inline-block;
-  width: 120px;
-  text-align: right;
-  margin-right: 15px;
+  display: block;
+  margin-bottom: 5px;
   font-size: 18px;
 }
 
 input[type="text"],
 select {
-  width: 250px;
+  width: 100%;
   padding: 10px;
   font-size: 16px;
   border: 2px solid #ccc;
   border-radius: 5px;
+  box-sizing: border-box;
 }
 
 select {
@@ -41,9 +57,9 @@ select {
 }
 
 #captureBtn {
+  width: 100%;
   font-size: 20px;
   padding: 12px 24px;
-  margin: 30px 0;
   background-color: #4caf50;
   color: white;
   border: none;
@@ -56,18 +72,11 @@ select {
   background-color: #45a049;
 }
 
-#results {
-  display: flex;
-  justify-content: center;
-  gap: 30px;
-  margin-top: 30px;
+.image-column {
+  text-align: center;
 }
 
-.image-container {
-  max-width: 45%;
-}
-
-img {
+.image-column img {
   max-width: 100%;
   height: auto;
   border: 1px solid #ddd;

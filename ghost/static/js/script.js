@@ -18,16 +18,14 @@ $(document).ready(function () {
         color: color,
       },
       success: function (response) {
-        $("#results").html(`
-                    <div class="image-container">
-                        <h3>Camera 0 Image</h3>
-                        <img src="${response.cam0_image}" alt="Camera 0 Image">
-                    </div>
-                    <div class="image-container">
-                        <h3>Camera 1 Image</h3>
-                        <img src="${response.cam1_image}" alt="Camera 1 Image">
-                    </div>
-                `);
+        $("#cam0-image").html(`
+          <h3>Camera 0 Image</h3>
+          <img src="${response.cam0_image}" alt="Camera 0 Image">
+        `);
+        $("#cam1-image").html(`
+          <h3>Camera 1 Image</h3>
+          <img src="${response.cam1_image}" alt="Camera 1 Image">
+        `);
       },
       error: function () {
         alert("Error capturing images");
