@@ -1,7 +1,7 @@
 import os
 import subprocess
 from datetime import datetime
-from flask import Flask, render_template, request, send_from_directory
+from flask import Flask, render_template, request, jsonify
 
 app = Flask(__name__, static_folder='static')
 
@@ -24,11 +24,10 @@ def index():
 def capture():
     element_id = request.form['element_id']
     design_id = request.form['design_id']
+    color = request.form['color']
     part_number = f"{element_id}_{design_id}"
 
-    color = request.form['color']
-
-    width_height_ev = f"--width {WIDTH_OF_IMAGE} --height {HEIGHT_OF_IMAGE} --ev {EV_CAM_0}" if CROP_IMAGE == True else ""
+    width_height_ev = f"--width {WIDTH_OF_IMAGE} --height {HEIGHT_OF_IMAGE} --ev {EV_CAM_0}" if CROP_IMAGE else ""
 
     # Capture image from first camera
     timestamp1 = datetime.now().strftime('%Y-%m-%d-%H-%M-%S')
@@ -46,14 +45,19 @@ def capture():
 
     # Save label information to CSV file for both images
     with open('data.csv', 'a') as f:
-        f.write(f"{filename1},{element_id},{design_id},{color},cam1\n")
-        f.write(f"{filename2},{element_id},{design_id},{color},cam2\n")
+        f.write(f"{filename1},{element_id},{design_id},{color},cam0\n")
+        f.write(f"{filename2},{element_id},{design_id},{color},cam1\n")
 
-    return render_template('success.html', filename1=filename1, filename2=filename2)
+    # Return JSON response with image paths
+    return jsonify({
+        'message': 'Images captured successfully',
+        'cam0_image': f'/images/{filename1}',
+        'cam1_image': f'/images/{filename2}'
+    })
 
 @app.route('/images/<filename>')
 def display_image(filename):
     return send_from_directory(IMAGE_DIR, filename)
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5005)
+    app.run(debug=True)

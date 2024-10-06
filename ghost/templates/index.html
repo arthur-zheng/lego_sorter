@@ -1,154 +1,65 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title>Lego Part Labeling and Capture</title>
-    <style>
-      body {
-        font-family: Arial, sans-serif;
-        background-color: #333;
-        margin: 0;
-        padding: 0;
-      }
-
-      .container {
-        display: flex;
-        gap: 10px;
-        justify-content: space-between;
-        align-items: flex-start;
-        padding: 20px;
-        max-width: 1400px;
-        margin: 50px auto;
-      }
-
-      .form-container {
-        flex: 1;
-        max-width: 400px;
-        background: white;
-        padding: 20px;
-        border-radius: 10px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      }
-
-      .image-container {
-        flex: 2;
-        text-align: center;
-      }
-
-      .image-container img {
-        max-width: 100%;
-        height: auto;
-        border-radius: 10px;
-      }
-
-      h1 {
-        text-align: center;
-      }
-
-      table {
-        width: 100%;
-        margin-top: 20px;
-      }
-
-      td {
-        padding: 8px;
-        vertical-align: top;
-      }
-
-      label {
-        display: block;
-        font-weight: bold;
-      }
-
-      input[type="text"],
-      select {
-        width: 100%;
-        padding: 8px;
-        box-sizing: border-box;
-      }
-
-      input[type="submit"] {
-        margin-top: 20px;
-        width: 100%;
-        padding: 10px;
-        background-color: #0066cc;
-        border: none;
-        color: white;
-        font-size: 16px;
-        border-radius: 5px;
-      }
-
-      input[type="submit"]:hover {
-        background-color: #0052a3;
-        cursor: pointer;
-      }
-    </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ghost Camera</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/styles.css') }}"
+    />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
   </head>
   <body>
-    <div class="container">
-      <!-- Form Container -->
-      <div class="form-container">
-        <h1>lego Sorter (Ghost)</h1>
-        <form action="/capture" method="post">
-          <table>
-            <tr>
-              <td><label for="element_id">Element ID</label></td>
-              <td>
-                <input type="text" id="element_id" name="element_id" required />
-              </td>
-            </tr>
-            <tr>
-              <td><label for="design_id">Design ID</label></td>
-              <td>
-                <input type="text" id="design_id" name="design_id" />
-              </td>
-            </tr>
-            <tr>
-              <td><label for="color">Color:</label></td>
-              <td>
-                <select id="color" name="color" required>
-                  <option value="">Select a color</option>
-                  <option value="white">White</option>
-                  <option value="light-gray">Light Gray</option>
-                  <option value="gray">Gray</option>
-                  <option value="dark-gray">Dark Gray</option>
-                  <option value="black">Black</option>
-                  <option value="tan">Tan</option>
-                  <option value="dark-tan">Dark Tan</option>
-                  <option value="brown">Brown</option>
-                  <option value="dark-brown">Dark Brown</option>
-                  <option value="red">Red</option>
-                  <option value="dark-red">Dark Red</option>
-                  <option value="pink">Pink</option>
-                  <option value="light-pink">Light Pink</option>
-                  <option value="dark-pink">Dark Pink</option>
-                  <option value="coral">Coral</option>
-                  <option value="bright-light-orange">
-                    Bright Light Orange
-                  </option>
-                  <option value="medium-orange">medium Orange</option>
-                  <option value="orange">Orange</option>
-                  <option value="light-yellow">Light Yellow</option>
-                  <option value="yellow">Yellow</option>
-                  <option value="bright-green">Bright Green</option>
-                  <option value="green">Green</option>
-                  <option value="lime">lime</option>
-                  <option value="dark-green">Dark Green</option>
-                  <option value="olive">Olive</option>
-                  <option value="blue">Blue</option>
-                  <option value="purple">Purple</option>
-                  <option value="dark-purple">Dark Purple</option>
-                </select>
-              </td>
-            </tr>
-          </table>
-          <input type="submit" value="Capture" />
-        </form>
-      </div>
+    <h1>Ghost Camera</h1>
 
-      <!-- Image Container -->
-      <div class="image-container">
-        <img src="/static/images/palette.png" alt="LEGO Palette" />
-      </div>
+    <div class="input-group">
+      <label for="element_id">Element ID:</label>
+      <input type="text" id="element_id" name="element_id" required />
     </div>
+
+    <div class="input-group">
+      <label for="design_id">Design ID:</label>
+      <input type="text" id="design_id" name="design_id" required />
+    </div>
+
+    <div class="input-group">
+      <label for="color">Color:</label>
+      <select id="color" name="color" required>
+        <option value="">Select a color</option>
+        <option value="white">White</option>
+        <option value="light-gray">Light Gray</option>
+        <option value="gray">Gray</option>
+        <option value="dark-gray">Dark Gray</option>
+        <option value="black">Black</option>
+        <option value="tan">Tan</option>
+        <option value="dark-tan">Dark Tan</option>
+        <option value="brown">Brown</option>
+        <option value="dark-brown">Dark Brown</option>
+        <option value="red">Red</option>
+        <option value="dark-red">Dark Red</option>
+        <option value="pink">Pink</option>
+        <option value="light-pink">Light Pink</option>
+        <option value="dark-pink">Dark Pink</option>
+        <option value="coral">Coral</option>
+        <option value="bright-light-orange">Bright Light Orange</option>
+        <option value="medium-orange">medium Orange</option>
+        <option value="orange">Orange</option>
+        <option value="light-yellow">Light Yellow</option>
+        <option value="yellow">Yellow</option>
+        <option value="bright-green">Bright Green</option>
+        <option value="green">Green</option>
+        <option value="lime">lime</option>
+        <option value="dark-green">Dark Green</option>
+        <option value="olive">Olive</option>
+        <option value="blue">Blue</option>
+        <option value="purple">Purple</option>
+        <option value="dark-purple">Dark Purple</option>
+      </select>
+    </div>
+
+    <button id="captureBtn">Capture Images</button>
+    <div id="results"></div>
   </body>
 </html>
