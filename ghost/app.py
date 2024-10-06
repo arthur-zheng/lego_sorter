@@ -1,7 +1,8 @@
 import os
 import subprocess
+import socket
 from datetime import datetime
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, send_from_directory
 
 app = Flask(__name__, static_folder='static')
 
@@ -59,5 +60,20 @@ def capture():
 def display_image(filename):
     return send_from_directory(IMAGE_DIR, filename)
 
+def get_local_ip():
+    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    try:
+        # doesn't even have to be reachable
+        s.connect(('10.255.255.255', 1))
+        IP = s.getsockname()[0]
+    except Exception:
+        IP = '127.0.0.1'
+    finally:
+        s.close()
+    return IP
+
 if __name__ == '__main__':
-    app.run(debug=True)
+    local_ip = get_local_ip()
+    port = 5005
+    print(f"Server running at http://{local_ip}:{port}/")
+    app.run(debug=True, host='0.0.0.0', port=port)
